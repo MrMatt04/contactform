@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {
   FormControl,
+  FormGroup,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -27,30 +28,51 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './resultaten.component.css',
 })
 export class ResultatenComponent {
-  // This is a signal that holds the value of a input field
-  protected readonly value = signal('');
+  //form handeling
+  contactForm = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phoneNum: new FormControl(''),
+    postcode: new FormControl(''),
+    woonplaats: new FormControl(''),
+    adress: new FormControl(''),
+    Onderwerp: new FormControl(''),
+    bericht: new FormControl(''),
+  });
 
-  protected onInput(event: Event) {
+  onSubmit() {
+    if (this.contactForm.valid) {
+      console.log('form submitted:', this.contactForm.value);
+    } else {
+      console.log('form not submitted:', this.contactForm.value);
+    }
+  }
+
+  private value = signal('');
+
+  onInput(event: Event) {
     this.value.set((event.target as HTMLInputElement).value);
   }
-  //this is a signal that holds the value of the input field of the email and validates it :)
-  readonly email = new FormControl('', [Validators.required, Validators.email]);
 
   errorMessage = signal('');
 
   constructor() {
-    merge(this.email.statusChanges, this.email.valueChanges)
+    merge(
+      this.contactForm.controls.email.statusChanges,
+      this.contactForm.controls.email.valueChanges
+    )
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
   }
 
   updateErrorMessage() {
-    if (this.email.hasError('required')) {
+    if (this.contactForm.controls.email.hasError('required')) {
       this.errorMessage.set('Email is verplicht 🥱');
-    } else if (this.email.hasError('email')) {
+    } else if (this.contactForm.controls.email.hasError('email')) {
       this.errorMessage.set('Email is ongeldig 😠');
     } else {
       this.errorMessage.set('');
     }
   }
+  // form handeling
 }
