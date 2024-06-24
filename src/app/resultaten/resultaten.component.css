@@ -1,0 +1,5 @@
+mat-form-field.telefoonnummer {
+  mat-form-field-infix {
+    padding-left: 5px;
+  }
+}

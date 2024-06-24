@@ -8,6 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import { merge } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -20,17 +21,19 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
   ],
   templateUrl: './resultaten.component.html',
   styleUrl: './resultaten.component.css',
 })
 export class ResultatenComponent {
+  // This is a signal that holds the value of a input field
   protected readonly value = signal('');
 
   protected onInput(event: Event) {
     this.value.set((event.target as HTMLInputElement).value);
   }
-
+  //this is a signal that holds the value of the input field of the email and validates it :)
   readonly email = new FormControl('', [Validators.required, Validators.email]);
 
   errorMessage = signal('');

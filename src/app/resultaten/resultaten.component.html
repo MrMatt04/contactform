@@ -8,6 +8,7 @@
     maxlength="15"
     placeholder="Uw naam"
     (input)="onInput($event)"
+    required
   />
   <mat-hint align="end">{{ value().length }}/15</mat-hint>
   <mat-icon matSuffix>😊</mat-icon>
@@ -28,9 +29,11 @@
   <mat-icon matSuffix>😍</mat-icon>
 </mat-form-field>
 <!-- Telefoonnummber gebruiker -->
-<mat-form-field appearance="outline">
+<mat-form-field class="telefoonnummer" appearance="outline">
   <mat-label>Telefoonnummer</mat-label>
-  <input matInput placeholder="Uw telefoonnummer" />
+  <input matInput placeholder="Uw telefoonnummer" maxlength="9" />
+  <span matTextPrefix>+31 6</span>
+  <mat-icon matSuffix>phone</mat-icon>
 </mat-form-field>
 <mat-form-field appearance="outline">
   <mat-label>Postcode</mat-label>
@@ -46,9 +49,17 @@
 </mat-form-field>
 <mat-form-field appearance="outline">
   <mat-label>Onderwerp</mat-label>
-  <input matInput placeholder="Het onderwerp" />
+  <input matInput placeholder="Het onderwerp" required />
 </mat-form-field>
+<!-- De vraag -->
 <mat-form-field appearance="outline">
   <mat-label>Schrijf hier uw vraag </mat-label>
-  <textarea matInput placeholder="Wat is uw vraag?"></textarea>
+  <textarea
+    matInput
+    placeholder="Wat is uw vraag?"
+    required
+    maxlength="255"
+    (input)="onInput($event)"
+  ></textarea>
+  <mat-hint align="end">{{ value().length }}/255</mat-hint>
 </mat-form-field>
