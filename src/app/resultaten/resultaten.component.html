@@ -1,14 +1,33 @@
 <p>resultaten works!</p>
-<mat-form-field appearance="outline">
+<!-- naam gebruiker -->
+<mat-form-field appearance="outline" hintLabel="Maximaal 15 charaters">
   <mat-label>Naam</mat-label>
-  <input matInput placeholder="uw naam" />
+  <input
+    matInput
+    #input
+    maxlength="15"
+    placeholder="Uw naam"
+    (input)="onInput($event)"
+  />
+  <mat-hint align="end">{{ value().length }}/15</mat-hint>
   <mat-icon matSuffix>😊</mat-icon>
-  <mat-hint>Hint</mat-hint>
+  <!-- email gebruiker -->
 </mat-form-field>
 <mat-form-field appearance="outline">
   <mat-label>E-mailadres</mat-label>
-  <input matInput placeholder="uw naam" />
+  <input
+    matInput
+    placeholder="uw naam"
+    [formControl]="email"
+    (blur)="updateErrorMessage()"
+    required
+  />
+  @if (email.invalid) {
+  <mat-error>{{ errorMessage() }}</mat-error>
+  }
+  <mat-icon matSuffix>😍</mat-icon>
 </mat-form-field>
+<!-- Telefoonnummber gebruiker -->
 <mat-form-field appearance="outline">
   <mat-label>Telefoonnummer</mat-label>
   <input matInput placeholder="Uw telefoonnummer" />
