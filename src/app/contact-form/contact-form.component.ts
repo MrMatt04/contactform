@@ -4,14 +4,11 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-contact-form',
   standalone: true,
-  imports: [ 
-    ReactiveFormsModule,
-  ],
+  imports: [ReactiveFormsModule],
   templateUrl: './contact-form.component.html',
-  styleUrl: './contact-form.component.css'
+  styleUrl: './contact-form.component.css',
 })
 export class ContactFormComponent {
-
   contactForm = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
@@ -25,8 +22,4 @@ export class ContactFormComponent {
   onSubmit() {
     console.warn(this.contactForm.value);
   }
-
-
-  
-  
 }
