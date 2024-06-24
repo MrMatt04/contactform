@@ -30,7 +30,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class ResultatenComponent {
   //form handeling
   contactForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phoneNum: new FormControl(''),
     postcode: new FormControl(''),
@@ -74,5 +74,5 @@ export class ResultatenComponent {
       this.errorMessage.set('');
     }
   }
-  // form handeling
+  // phone number validation
 }
