@@ -1,100 +1,107 @@
-<p>resultaten works!</p>
 <!-- naam gebruiker -->
-<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="outline" hintLabel="Maximaal 15 charaters">
-    <mat-label>Naam</mat-label>
-    <input
-      matInput
-      #input
-      maxlength="15"
-      placeholder="Uw naam"
-      (input)="onInput($event)"
-      required
-      [formControl]="contactForm.controls.name"
-    />
-    <mat-hint align="end"
-      >{{ contactForm.controls.name.value?.length }}/15</mat-hint
+<div class="form">
+  <h1>Contact formulier</h1>
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <mat-form-field
+      appearance="outline"
+      hintLabel="Maximaal 15 charaters"
+      class="naam"
     >
-    <mat-icon matSuffix>😊</mat-icon>
-    <!-- email gebruiker -->
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>E-mailadres</mat-label>
-    <input
-      matInput
-      placeholder="uw naam"
-      [formControl]="contactForm.controls.email"
-      (blur)="updateErrorMessage()"
-      required
-    />
-    @if (contactForm.controls.email.valid) {
-    <mat-error>{{ errorMessage() }}</mat-error>
-    }
-    <mat-icon matSuffix>😍</mat-icon>
-  </mat-form-field>
-  <!-- Telefoonnummber gebruiker -->
-  <mat-form-field class="telefoonnummer" appearance="outline">
-    <mat-label>Telefoonnummer</mat-label>
-    <input
-      matInput
-      placeholder="Uw telefoonnummer"
-      maxlength="8"
-      [formControl]="contactForm.controls.phoneNum"
-    />
-    <span matTextPrefix>+31 6</span>
-    <mat-icon matSuffix>phone</mat-icon>
-  </mat-form-field>
-  <!-- postcode gebruiker-->
-  <mat-form-field appearance="outline">
-    <mat-label>Postcode</mat-label>
-    <input
-      matInput
-      placeholder="uw naam"
-      [formControl]="contactForm.controls.postcode"
-    />
-  </mat-form-field>
-  <!-- woonplaats -->
-  <mat-form-field appearance="outline">
-    <mat-label>Woonplaats</mat-label>
-    <input
-      matInput
-      placeholder="Uw woonplaats"
-      [formControl]="contactForm.controls.woonplaats"
-    />
-  </mat-form-field>
-  <!-- adress -->
-  <mat-form-field appearance="outline">
-    <mat-label>Adress</mat-label>
-    <input
-      matInput
-      placeholder="Uw adress"
-      [formControl]="contactForm.controls.adress"
-    />
-  </mat-form-field>
-  <!-- onderwerp -->
-  <mat-form-field appearance="outline">
-    <mat-label>Onderwerp</mat-label>
-    <input
-      matInput
-      placeholder="Het onderwerp"
-      required
-      [formControl]="contactForm.controls.Onderwerp"
-    />
-  </mat-form-field>
-  <!-- De vraag -->
-  <mat-form-field appearance="outline">
-    <mat-label>Schrijf hier uw vraag </mat-label>
-    <textarea
-      matInput
-      placeholder="Wat is uw vraag?"
-      required
-      maxlength="255"
-      (input)="onInput($event)"
-      [formControl]="contactForm.controls.bericht"
-    ></textarea>
-    <mat-hint align="end"
-      >{{ contactForm.controls.bericht.value?.length }}/255</mat-hint
-    >
-  </mat-form-field>
-  <button type="submit" [disabled]="!contactForm.valid">Submit</button>
-</form>
+      <mat-label>Naam</mat-label>
+      <input
+        matInput
+        #input
+        maxlength="15"
+        placeholder="Uw naam"
+        (input)="onInput($event)"
+        required
+        [formControl]="contactForm.controls.name"
+      />
+      <mat-hint align="end"
+        >{{ contactForm.controls.name.value?.length }}/15</mat-hint
+      >
+      <mat-icon matSuffix>😊</mat-icon>
+      <!-- email gebruiker -->
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>E-mailadres</mat-label>
+      <input
+        matInput
+        placeholder="uw naam"
+        [formControl]="contactForm.controls.email"
+        (blur)="updateErrorMessage()"
+        required
+        class="email-input"
+      />
+      @if (contactForm.controls.email.valid) {
+      <mat-error>{{ errorMessage() }}</mat-error>
+      }
+      <mat-icon matSuffix>😍</mat-icon>
+    </mat-form-field>
+    <!-- Telefoonnummber gebruiker -->
+    <mat-form-field class="telefoonnummer" appearance="outline">
+      <mat-label>Telefoonnummer</mat-label>
+      <input
+        matInput
+        placeholder="Uw telefoonnummer"
+        maxlength="9"
+        [formControl]="contactForm.controls.phoneNum"
+      />
+      <span matTextPrefix>+31</span>
+      <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+    <!-- postcode gebruiker-->
+    <mat-form-field appearance="outline">
+      <mat-label>Postcode</mat-label>
+      <input
+        matInput
+        placeholder="uw naam"
+        [formControl]="contactForm.controls.postcode"
+      />
+    </mat-form-field>
+    <!-- woonplaats -->
+    <mat-form-field appearance="outline">
+      <mat-label>Woonplaats</mat-label>
+      <input
+        matInput
+        placeholder="Uw woonplaats"
+        [formControl]="contactForm.controls.woonplaats"
+      />
+    </mat-form-field>
+    <!-- adress -->
+    <mat-form-field appearance="outline">
+      <mat-label>Adress</mat-label>
+      <input
+        matInput
+        placeholder="Uw adress"
+        [formControl]="contactForm.controls.adress"
+      />
+    </mat-form-field>
+    <!-- onderwerp -->
+    <mat-form-field appearance="outline">
+      <mat-label>Onderwerp</mat-label>
+      <input
+        matInput
+        placeholder="Het onderwerp"
+        required
+        [formControl]="contactForm.controls.Onderwerp"
+      />
+    </mat-form-field>
+    <!-- De vraag -->
+    <mat-form-field appearance="outline" class="textbox">
+      <mat-label>Schrijf hier uw vraag </mat-label>
+      <textarea
+        matInput
+        placeholder="Wat is uw vraag?"
+        required
+        maxlength="255"
+        (input)="onInput($event)"
+        [formControl]="contactForm.controls.bericht"
+      ></textarea>
+      <mat-hint align="end"
+        >{{ contactForm.controls.bericht.value?.length }}/255</mat-hint
+      >
+    </mat-form-field>
+    <button type="submit" [disabled]="!contactForm.valid">Submit</button>
+  </form>
+</div>
